@@ -100,6 +100,11 @@ function initNavigation() {
         function toggleMobileMenu() {
             const isActive = navToggle.classList.contains('active');
 
+            // Debug logging for mobile issues
+            console.log('Mobile menu toggle - Current state:', isActive ? 'open' : 'closed');
+            console.log('Viewport width:', window.innerWidth);
+            console.log('Touch device:', 'ontouchstart' in window);
+
             if (isActive) {
                 closeMobileMenu();
             } else {
