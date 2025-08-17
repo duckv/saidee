@@ -753,10 +753,20 @@ const optimizedScrollHandler = debounce(function() {
 
 window.addEventListener('scroll', optimizedScrollHandler);
 
-// Loading screen disabled to prevent buttons reappearing
+// Beautiful Bread N' Br☕w Loading Screen
 window.addEventListener('load', function() {
-    // Loading screen removed to fix button reappearing issue
-    console.log('Page loaded - loading screen disabled');
+    // Hide loading screen with fade out animation
+    const loadingScreen = document.querySelector('.loading-screen');
+    if (loadingScreen) {
+        setTimeout(() => {
+            loadingScreen.style.opacity = '0';
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+                document.body.style.overflow = '';
+            }, 600);
+        }, 800); // Show loading for at least 800ms for smooth experience
+    }
+    console.log('✨ Bread N\' Br☕w loaded successfully!');
 });
 
 // Add keyboard navigation support
