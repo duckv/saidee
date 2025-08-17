@@ -2,33 +2,43 @@
 
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
+    try {
+        console.log('Initializing Bread N\' Br☕︎w website...');
 
-    // IMMEDIATE FIX: Force all content to be visible
-    forceContentVisible();
+        // IMMEDIATE FIX: Force all content to be visible
+        forceContentVisible();
 
-    // Navigation functionality
-    initNavigation();
-    
-    // Smooth scrolling for anchor links
-    initSmoothScrolling();
-    
-    // Intersection Observer for animations
-    initScrollAnimations();
-    
-    // Form handling
-    initForms();
-    
-    // Image lazy loading and hover effects
-    initImageEffects();
-    
-    // Luxury hover effects
-    initLuxuryEffects();
-    
-    // Newsletter modal - DISABLED
-    // initNewsletterModal();
-    
-    // Order Online functionality
-    initOrderOnline();
+        // Navigation functionality
+        initNavigation();
+
+        // Smooth scrolling for anchor links
+        initSmoothScrolling();
+
+        // Intersection Observer for animations
+        initScrollAnimations();
+
+        // Form handling
+        initForms();
+
+        // Image lazy loading and hover effects
+        initImageEffects();
+
+        // Luxury hover effects
+        initLuxuryEffects();
+
+        // Newsletter modal - DISABLED
+        // initNewsletterModal();
+
+        // Order Online functionality
+        initOrderOnline();
+
+        console.log('☕ Bread N\' Br☕︎w - All features initialized successfully!');
+
+    } catch (error) {
+        console.error('Error during initialization:', error);
+        // Fallback: ensure content is visible even if other features fail
+        setTimeout(forceContentVisible, 1000);
+    }
 });
 
 // Navigation functionality
