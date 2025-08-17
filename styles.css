@@ -2103,6 +2103,47 @@ a[href^="mailto:"]:hover {
     }
 }
 
+/* Responsive Images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Optimized image loading */
+.hero-image,
+.card-background img,
+.about-image img,
+.catering-image img,
+.gallery-item img,
+.package-image img,
+.story-image img {
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Prevent layout shift during image loading */
+.card-background,
+.about-image,
+.catering-image,
+.gallery-item,
+.package-image,
+.story-image,
+.hero-background {
+    background-color: #f5f4f1;
+}
+
+/* Responsive image srcset for high-DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .hero-image,
+    .card-background img {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
 /* Additional hover effects and luxury touches */
 .btn:active {
     transform: translateY(0);
