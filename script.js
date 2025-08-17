@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Luxury hover effects
     initLuxuryEffects();
     
-    // Newsletter modal
-    initNewsletterModal();
+    // Newsletter modal - DISABLED
+    // initNewsletterModal();
     
     // Menu PDF download
     initMenuDownload();
@@ -77,12 +77,8 @@ function initNavigation() {
             navbar.style.boxShadow = 'none';
         }
         
-        // Hide/show navbar on scroll
-        if (scrollTop > lastScrollTop && scrollTop > 200) {
-            navbar.style.transform = 'translateY(-100%)';
-        } else {
-            navbar.style.transform = 'translateY(0)';
-        }
+        // Keep navbar always visible - removed auto-hide behavior
+    navbar.style.transform = 'translateY(0)';
         
         lastScrollTop = scrollTop;
     });
@@ -148,7 +144,7 @@ function initScrollAnimations() {
         });
     }, observerOptions);
     
-    // Observe elements for animation
+    // Observe elements for animation - Fixed to show content immediately if observer fails
     const animatedElements = document.querySelectorAll(`
         .highlight-card,
         .package-card,
@@ -161,14 +157,22 @@ function initScrollAnimations() {
         .catering-text,
         .story-content
     `);
-    
-    animatedElements.forEach(element => {
-        // Set initial state
+
+    animatedElements.forEach((element, index) => {
+        // Set initial state but with fallback visibility
         element.style.opacity = '0';
         element.style.transform = element.classList.contains('gallery-item') ? 'scale(0.8)' : 'translateY(50px)';
         element.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-        
+
         observer.observe(element);
+
+        // Fallback: show element after a short delay if observer doesn't trigger
+        setTimeout(() => {
+            if (element.style.opacity === '0') {
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0) scale(1)';
+            }
+        }, 1000 + (index * 100));
     });
 }
 
@@ -242,10 +246,11 @@ function initImageEffects() {
             this.style.opacity = '1';
         });
         
-        // Error handling
+        // Error handling - use placeholder
         img.addEventListener('error', function() {
-            this.style.opacity = '0.5';
-            this.alt = 'Image not available';
+            this.style.opacity = '1';
+            this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkFGOUY2Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2QyOWY1MSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkx1bWnDqHJlIFBhdGlzc2VyaWU8L3RleHQ+PC9zdmc+';
+            this.alt = 'Lumière Patisserie';
         });
     });
     
@@ -375,23 +380,10 @@ const style = document.createElement('style');
 style.textContent = sparkleCSS;
 document.head.appendChild(style);
 
-// Newsletter modal functionality
+// Newsletter modal functionality - DISABLED
 function initNewsletterModal() {
-    // Show newsletter modal after 30 seconds if not already subscribed
-    const hasSubscribed = localStorage.getItem('newsletterSubscribed');
-    
-    if (!hasSubscribed) {
-        setTimeout(() => {
-            showNewsletterModal();
-        }, 30000);
-    }
-    
-    // Show modal on exit intent
-    document.addEventListener('mouseleave', function(e) {
-        if (e.clientY <= 0 && !hasSubscribed) {
-            showNewsletterModal();
-        }
-    });
+    // Newsletter modal completely disabled per user request
+    console.log('Newsletter modal disabled');
 }
 
 function showNewsletterModal() {
