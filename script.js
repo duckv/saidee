@@ -2,7 +2,10 @@
 
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    
+
+    // IMMEDIATE FIX: Force all content to be visible
+    forceContentVisible();
+
     // Navigation functionality
     initNavigation();
     
@@ -790,5 +793,38 @@ function initContactPageEffects() {
 
 // Initialize page-specific functionality
 initPageSpecific();
+
+// Force all content to be visible immediately
+function forceContentVisible() {
+    const hiddenElements = document.querySelectorAll(`
+        .highlight-card,
+        .package-card,
+        .gallery-item,
+        .value-item,
+        .service-item,
+        .order-item,
+        .menu-category,
+        .about-text,
+        .catering-text,
+        .story-content,
+        .menu-items,
+        .menu-item
+    `);
+
+    hiddenElements.forEach(element => {
+        element.style.opacity = '1';
+        element.style.transform = 'translateY(0) scale(1)';
+        element.style.visibility = 'visible';
+    });
+
+    // Fix navbar
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+        navbar.style.transform = 'translateY(0)';
+        navbar.style.visibility = 'visible';
+    }
+
+    console.log('Content visibility forced - all elements should now be visible');
+}
 
 console.log('🥐 Lumière Patisserie - Interactive features loaded successfully!');
