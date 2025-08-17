@@ -245,43 +245,47 @@ function initSmoothScrolling() {
 // Intersection Observer for scroll animations
 function initScrollAnimations() {
     const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: 0.15,
+        rootMargin: '0px 0px -100px 0px'
     };
-    
+
     const observer = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('fade-in');
-                
-                // Special animations for different elements
+
+                // Use CSS animations with staggered delays for natural effect
                 if (entry.target.classList.contains('highlight-card')) {
-                    setTimeout(() => {
-                        entry.target.style.transform = 'translateY(0)';
-                        entry.target.style.opacity = '1';
-                    }, Math.random() * 300);
+                    const cards = Array.from(document.querySelectorAll('.highlight-card'));
+                    const index = cards.indexOf(entry.target);
+                    entry.target.style.animationDelay = `${index * 150}ms`;
                 }
-                
+
                 if (entry.target.classList.contains('package-card')) {
-                    setTimeout(() => {
-                        entry.target.style.transform = 'translateY(0)';
-                        entry.target.style.opacity = '1';
-                    }, Math.random() * 200);
+                    const cards = Array.from(document.querySelectorAll('.package-card'));
+                    const index = cards.indexOf(entry.target);
+                    entry.target.style.animationDelay = `${index * 200}ms`;
                 }
-                
+
                 if (entry.target.classList.contains('gallery-item')) {
-                    setTimeout(() => {
-                        entry.target.style.transform = 'scale(1)';
-                        entry.target.style.opacity = '1';
-                    }, Math.random() * 250);
+                    const items = Array.from(document.querySelectorAll('.gallery-item'));
+                    const index = items.indexOf(entry.target);
+                    entry.target.style.animationDelay = `${index * 100}ms`;
                 }
-                
+
+                // Reset inline styles to let CSS animations take over
+                setTimeout(() => {
+                    entry.target.style.opacity = '';
+                    entry.target.style.transform = '';
+                    entry.target.style.transition = '';
+                }, 50);
+
                 observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
-    
-    // Observe elements for animation - Fixed to show content immediately if observer fails
+
+    // Observe elements for animation
     const animatedElements = document.querySelectorAll(`
         .highlight-card,
         .package-card,
@@ -295,7 +299,7 @@ function initScrollAnimations() {
         .story-content
     `);
 
-    animatedElements.forEach((element, index) => {
+    animatedElements.forEach((element) => {
         // Set initial state for scroll animations
         element.style.opacity = '0';
         element.style.transform = element.classList.contains('gallery-item') ? 'scale(0.8)' : 'translateY(50px)';
@@ -303,6 +307,8 @@ function initScrollAnimations() {
 
         observer.observe(element);
     });
+
+    console.log(`✨ Scroll animations initialized for ${animatedElements.length} elements`);
 }
 
 // Form handling
