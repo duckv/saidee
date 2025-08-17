@@ -311,6 +311,8 @@ function initScrollAnimations() {
 
 // Form handling
 function initForms() {
+    // Enhance mobile form interactions
+    enhanceMobileForms();
     // Newsletter form
     const newsletterForm = document.querySelector('.newsletter-form');
     if (newsletterForm) {
