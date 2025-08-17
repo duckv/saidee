@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', function() {
     try {
         console.log('Initializing Bread N\' Br☕︎w website...');
 
+        // Initialize EmailJS
+        initEmailJS();
+
         // IMMEDIATE FIX: Force all content to be visible
         forceContentVisible();
 
@@ -40,6 +43,16 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(forceContentVisible, 1000);
     }
 });
+
+// Initialize EmailJS
+function initEmailJS() {
+    if (typeof emailjs !== 'undefined') {
+        emailjs.init('21LVan48_eVuxeqqS');
+        console.log('EmailJS initialized successfully');
+    } else {
+        console.warn('EmailJS not loaded - forms will show simulation messages');
+    }
+}
 
 // Navigation functionality
 function initNavigation() {
@@ -223,21 +236,33 @@ function initForms() {
                 from_email: formData.get('email'),
                 phone: formData.get('phone') || 'Not provided',
                 subject: formData.get('subject') || 'General Inquiry',
-                message: formData.get('message'),
-                to_email: 'breadnbrew512@gmail.com'
+                message: formData.get('message')
             };
 
-            // Send email using EmailJS (you'll need to set up EmailJS service)
-            // For now, simulate the email sending
-            setTimeout(() => {
-                showNotification('Thank you for your message! We\'ll get back to you within 24 hours at breadnbrew512@gmail.com', 'success');
-                this.reset();
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-
-                // Log the form data that would be sent
-                console.log('Contact form data:', templateParams);
-            }, 1500);
+            // Send email using EmailJS
+            if (typeof emailjs !== 'undefined') {
+                emailjs.send('service_aw0glyl', 'template_wvgv8q5', templateParams)
+                    .then(function(response) {
+                        console.log('Contact email sent successfully:', response);
+                        showNotification('Thank you for your message! We\'ll get back to you within 24 hours.', 'success');
+                        contactForm.reset();
+                    })
+                    .catch(function(error) {
+                        console.error('Failed to send contact email:', error);
+                        showNotification('Sorry, there was an error sending your message. Please try calling us at (908) 933-0123.', 'error');
+                    })
+                    .finally(function() {
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                    });
+            } else {
+                // Fallback if EmailJS isn't loaded
+                setTimeout(() => {
+                    showNotification('EmailJS not available. Please call us at (908) 933-0123 or email breadnbrew512@gmail.com', 'error');
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }, 1000);
+            }
         });
     }
     
@@ -263,21 +288,33 @@ function initForms() {
                 event_type: formData.get('eventType') || 'Not specified',
                 guest_count: formData.get('guestCount'),
                 package_interest: formData.get('packageInterest') || 'Not specified',
-                details: formData.get('details'),
-                to_email: 'breadnbrew512@gmail.com'
+                details: formData.get('details') || 'No additional details provided'
             };
 
-            // Send email using EmailJS (you'll need to set up EmailJS service)
-            // For now, simulate the email sending
-            setTimeout(() => {
-                showNotification('Thank you for your catering inquiry! Our team will contact you within 24 hours at breadnbrew512@gmail.com to discuss your event.', 'success');
-                this.reset();
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-
-                // Log the form data that would be sent
-                console.log('Catering form data:', templateParams);
-            }, 2000);
+            // Send email using EmailJS
+            if (typeof emailjs !== 'undefined') {
+                emailjs.send('service_aw0glyl', 'template_jt6z1vk', templateParams)
+                    .then(function(response) {
+                        console.log('Catering email sent successfully:', response);
+                        showNotification('Thank you for your catering inquiry! Our team will contact you within 24 hours to discuss your event.', 'success');
+                        cateringForm.reset();
+                    })
+                    .catch(function(error) {
+                        console.error('Failed to send catering email:', error);
+                        showNotification('Sorry, there was an error sending your inquiry. Please call us at (908) 933-0123 for catering requests.', 'error');
+                    })
+                    .finally(function() {
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                    });
+            } else {
+                // Fallback if EmailJS isn't loaded
+                setTimeout(() => {
+                    showNotification('EmailJS not available. Please call us at (908) 933-0123 for catering inquiries.', 'error');
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }, 1000);
+            }
         });
     }
 }
