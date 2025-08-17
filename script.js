@@ -84,7 +84,15 @@ function initNavigation() {
 
             navToggle.classList.toggle('active');
             navMenu.classList.toggle('active');
-            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+
+            // Better scroll prevention for mobile devices
+            if (navMenu.classList.contains('active')) {
+                document.body.classList.add('menu-open');
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.classList.remove('menu-open');
+                document.body.style.overflow = '';
+            }
 
             // Add ARIA attributes for accessibility
             navToggle.setAttribute('aria-expanded', navMenu.classList.contains('active'));
