@@ -8,7 +8,223 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <style>
+        /* Menu-specific styles */
+        .menu-section {
+            min-height: 100vh;
+            padding: 100px 0 40px;
+            background: #FAF9F6;
+        }
+
+        .menu-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 0 2rem;
+        }
+
+        .menu-header h1 {
+            color: #2A2A2A;
+            margin-bottom: 1rem;
+        }
+
+        .menu-header p {
+            font-size: 1.1rem;
+            color: #6B6B6B;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .menu-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            position: relative;
+        }
+
+        .menu-iframe-wrapper {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            height: 80vh;
+            min-height: 600px;
+        }
+
+        .menu-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 12px;
+        }
+
+        .loading-indicator {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #6B6B6B;
+            z-index: 1;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #E91E63;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .menu-fallback {
+            display: none;
+            text-align: center;
+            padding: 3rem 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+
+        .menu-fallback h3 {
+            color: #2A2A2A;
+            margin-bottom: 1rem;
+        }
+
+        .menu-fallback p {
+            color: #6B6B6B;
+            margin-bottom: 2rem;
+        }
+
+        .order-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .order-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: #E91E63;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            min-height: 44px;
+        }
+
+        .order-btn:hover {
+            background: #C2185B;
+            transform: translateY(-2px);
+            color: white;
+        }
+
+        .location-info {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .location-info h3 {
+            color: #2A2A2A;
+            margin-bottom: 1rem;
+        }
+
+        .address-link {
+            color: #E91E63;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .address-link:hover {
+            color: #C2185B;
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-section {
+                padding: 80px 0 20px;
+            }
+
+            .menu-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .menu-header p {
+                font-size: 1rem;
+            }
+
+            .menu-iframe-wrapper {
+                height: 70vh;
+                min-height: 500px;
+                border-radius: 8px;
+            }
+
+            .menu-container {
+                padding: 0 0.5rem;
+            }
+
+            .location-info {
+                margin-top: 2rem;
+                padding: 1.5rem;
+            }
+
+            .order-buttons {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+
+            .order-btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu-header {
+                padding: 0 1rem;
+            }
+
+            .menu-iframe-wrapper {
+                height: 65vh;
+                min-height: 450px;
+            }
+        }
+
+        /* Tablet specific adjustments */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .menu-iframe-wrapper {
+                height: 75vh;
+                min-height: 550px;
+            }
+        }
+
+        /* Large screen optimization */
+        @media (min-width: 1400px) {
+            .menu-iframe-wrapper {
+                height: 85vh;
+                min-height: 700px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -34,41 +250,58 @@
         </div>
     </nav>
 
-    <!-- Construction Page Content -->
-    <section class="construction-page">
-        <div class="container">
-            <div class="construction-content">
-                <div class="construction-icon">
-                    🚧
+    <!-- Menu Section -->
+    <section class="menu-section">
+        <div class="menu-container">
+            <div class="menu-header">
+                <h1>Our Menu</h1>
+                <p>Explore our carefully crafted selection of artisanal breads, premium coffee, and exquisite pastries. Order online for pickup or delivery!</p>
+            </div>
+
+            <div class="menu-iframe-wrapper">
+                <div class="loading-indicator" id="loadingIndicator">
+                    <div class="loading-spinner"></div>
+                    <p>Loading our delicious menu...</p>
                 </div>
-                <h1>Are you that hungry?</h1>
-                <p>This page is under construction but that doesn't mean you can't order!</p>
-                
-                <div class="order-cta">
-                    <h2>ORDER ONLINE HERE!</h2>
-                    <a href="https://online.skytab.com/s/breadnbrew" target="_blank" class="btn btn-primary btn-large">
-                        🍞 Order Now at Bread N' Br☕︎w ☕
+                <iframe 
+                    src="https://online.skytab.com/s/breadnbrew" 
+                    class="menu-iframe"
+                    id="menuIframe"
+                    title="Bread N' Brew Online Menu"
+                    loading="lazy"
+                    onload="hideLoading()"
+                    onerror="showFallback()">
+                </iframe>
+            </div>
+
+            <div class="menu-fallback" id="menuFallback">
+                <h3>🍞 Menu Temporarily Unavailable</h3>
+                <p>We're having trouble loading our menu right now, but you can still place your order directly!</p>
+                <div class="order-buttons">
+                    <a href="https://online.skytab.com/s/breadnbrew" target="_blank" class="order-btn">
+                        🛒 Order Online Now
+                    </a>
+                    <a href="tel:+19089330123" class="order-btn" style="background: #4CAF50;">
+                        📞 Call to Order: (908) 933-0123
                     </a>
                 </div>
-                
-                <div class="construction-details">
-                    <p>We're working hard to bring you our complete menu online. In the meantime, you can place your order directly through our online ordering system!</p>
-                    
-                    <div class="quick-info">
-                        <div class="info-item">
-                            <h3>📍 Visit Us</h3>
-                            <p><a href="https://maps.google.com/?q=512+Springfield+Ave,+Berkeley+Heights,+NJ" target="_blank" class="address-link">512 Springfield Ave<br>Berkeley Heights, NJ 07922</a></p>
-                        </div>
-                        <div class="info-item">
-                            <h3>📞 Call Us</h3>
-                            <p>(908) 933-0123</p>
-                        </div>
-                        <div class="info-item">
-                            <h3>⏰ Hours</h3>
-                            <p>Mon-Fri: 7:00 AM - 8:00 PM<br>Sat-Sun: 8:00 AM - 9:00 PM</p>
-                        </div>
-                    </div>
-                </div>
+            </div>
+
+            <div class="location-info">
+                <h3>📍 Visit Our Location</h3>
+                <p>
+                    <a href="https://maps.google.com/?q=Bread+N'+Brew,+Springfield+Avenue,+Berkeley+Heights,+NJ" 
+                       target="_blank" 
+                       class="address-link"
+                       onclick="openGoogleMaps()">
+                        Bread N' Brew<br>
+                        Springfield Avenue<br>
+                        Berkeley Heights, NJ
+                    </a>
+                </p>
+                <p style="margin-top: 1rem; color: #6B6B6B;">
+                    <strong>Hours:</strong> Mon-Fri: 7:00 AM - 8:00 PM | Sat-Sun: 8:00 AM - 9:00 PM
+                </p>
             </div>
         </div>
     </section>
@@ -92,10 +325,21 @@
                 </div>
                 <div class="footer-section">
                     <h4>Visit Us</h4>
-                    <p><a href="https://maps.google.com/?q=512+Springfield+Ave,+Berkeley+Heights,+NJ" target="_blank" class="address-link">512 Springfield Ave<br>
-                    Berkeley Heights, NJ 07922</a><br>
-                    <a href="tel:+19089330123">(908) 933-0123</a></p>
-                    <a href="https://maps.google.com/?q=512+Springfield+Ave,+Berkeley+Heights,+NJ" target="_blank" class="directions-link">Get Directions via Google Maps</a>
+                    <p>
+                        <a href="https://maps.google.com/?q=Bread+N'+Brew,+Springfield+Avenue,+Berkeley+Heights,+NJ" 
+                           target="_blank" 
+                           class="address-link"
+                           onclick="openGoogleMaps()">
+                            Bread N' Brew<br>
+                            Springfield Avenue<br>
+                            Berkeley Heights, NJ
+                        </a><br>
+                        <a href="tel:+19089330123">(908) 933-0123</a>
+                    </p>
+                    <a href="https://maps.google.com/?q=Bread+N'+Brew,+Springfield+Avenue,+Berkeley+Heights,+NJ" 
+                       target="_blank" 
+                       class="directions-link"
+                       onclick="openGoogleMaps()">Get Directions via Google Maps</a>
                 </div>
                 <div class="footer-section">
                     <h4>Hours</h4>
@@ -110,5 +354,60 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Menu page specific JavaScript
+        function hideLoading() {
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            if (loadingIndicator) {
+                loadingIndicator.style.display = 'none';
+            }
+        }
+
+        function showFallback() {
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            const menuFallback = document.getElementById('menuFallback');
+            const menuIframe = document.getElementById('menuIframe');
+            
+            if (loadingIndicator) loadingIndicator.style.display = 'none';
+            if (menuIframe) menuIframe.style.display = 'none';
+            if (menuFallback) menuFallback.style.display = 'block';
+        }
+
+        function openGoogleMaps() {
+            // Track analytics if needed
+            console.log('Opening Google Maps for Bread N\' Brew location');
+        }
+
+        // Hide loading indicator after 10 seconds if iframe doesn't load
+        setTimeout(() => {
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            if (loadingIndicator && loadingIndicator.style.display !== 'none') {
+                hideLoading();
+            }
+        }, 10000);
+
+        // Responsive iframe height adjustment
+        function adjustIframeHeight() {
+            const iframe = document.getElementById('menuIframe');
+            const wrapper = document.querySelector('.menu-iframe-wrapper');
+            
+            if (iframe && wrapper) {
+                // Ensure iframe maintains responsive height
+                iframe.style.height = '100%';
+            }
+        }
+
+        // Adjust on load and resize
+        window.addEventListener('load', adjustIframeHeight);
+        window.addEventListener('resize', adjustIframeHeight);
+
+        // Handle iframe communication for better UX
+        window.addEventListener('message', function(event) {
+            // Handle messages from the embedded menu if needed
+            if (event.origin === 'https://online.skytab.com') {
+                console.log('Message from SkyTab menu:', event.data);
+            }
+        });
+    </script>
 </body>
 </html>
