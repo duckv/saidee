@@ -1707,6 +1707,20 @@ a[href^="mailto:"]:hover {
         transform: rotate(-45deg) translate(7px, -6px);
     }
 
+    /* Ensure hamburger menu is visible and accessible on all devices */
+    .nav-toggle {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(210, 159, 81, 0.3);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-toggle:hover,
+    .nav-toggle:active,
+    .nav-toggle.active {
+        background: rgba(233, 30, 99, 0.1);
+        border-color: rgba(233, 30, 99, 0.5);
+    }
+
     .hero-title {
         font-size: 2.5rem;
     }
