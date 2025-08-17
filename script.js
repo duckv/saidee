@@ -298,19 +298,12 @@ function initScrollAnimations() {
     `);
 
     animatedElements.forEach((element, index) => {
-        // Set initial state but with fallback visibility
+        // Set initial state for scroll animations
         element.style.opacity = '0';
         element.style.transform = element.classList.contains('gallery-item') ? 'scale(0.8)' : 'translateY(50px)';
         element.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
 
         observer.observe(element);
-
-        // Fallback: show element immediately to prevent reappearing buttons
-        setTimeout(() => {
-            element.style.opacity = '1';
-            element.style.transform = 'translateY(0) scale(1)';
-            observer.unobserve(element); // Stop observing once visible
-        }, 500); // Reduced delay
     });
 }
 
