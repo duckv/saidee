@@ -758,16 +758,41 @@ window.addEventListener('scroll', optimizedScrollHandler);
 
 // Beautiful Bread N' Br☕w Loading Screen
 window.addEventListener('load', function() {
-    // Hide loading screen with fade out animation
+    // Hide loading screen with smooth fade out animation
     const loadingScreen = document.querySelector('.loading-screen');
     if (loadingScreen) {
         setTimeout(() => {
             loadingScreen.style.opacity = '0';
             setTimeout(() => {
                 loadingScreen.style.display = 'none';
+                document.body.classList.remove('loading');
                 document.body.style.overflow = '';
+
+                // Trigger scroll animations after loading is complete
+                const animatedElements = document.querySelectorAll(`
+                    .highlight-card,
+                    .package-card,
+                    .gallery-item,
+                    .value-item,
+                    .service-item,
+                    .order-item,
+                    .menu-category,
+                    .about-text,
+                    .catering-text,
+                    .story-content
+                `);
+
+                // Small delay to ensure smooth transition
+                setTimeout(() => {
+                    animatedElements.forEach(element => {
+                        if (element.getBoundingClientRect().top < window.innerHeight) {
+                            element.classList.add('fade-in');
+                        }
+                    });
+                }, 200);
+
             }, 600);
-        }, 800); // Show loading for at least 800ms for smooth experience
+        }, 1200); // Show loading for at least 1.2s for a premium feel
     }
     console.log('✨ Bread N\' Br☕w loaded successfully!');
 });
