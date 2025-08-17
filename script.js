@@ -179,13 +179,12 @@ function initScrollAnimations() {
 
         observer.observe(element);
 
-        // Fallback: show element after a short delay if observer doesn't trigger
+        // Fallback: show element immediately to prevent reappearing buttons
         setTimeout(() => {
-            if (element.style.opacity === '0') {
-                element.style.opacity = '1';
-                element.style.transform = 'translateY(0) scale(1)';
-            }
-        }, 1000 + (index * 100));
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0) scale(1)';
+            observer.unobserve(element); // Stop observing once visible
+        }, 500); // Reduced delay
     });
 }
 
@@ -552,54 +551,14 @@ const notificationStyle = document.createElement('style');
 notificationStyle.textContent = notificationCSS;
 document.head.appendChild(notificationStyle);
 
-// Cursor trail effect for luxury feel
+// Cursor trail effect disabled to fix laggy cursor
 function initCursorTrail() {
-    const trail = [];
-    const trailLength = 20;
-    
-    for (let i = 0; i < trailLength; i++) {
-        const dot = document.createElement('div');
-        dot.className = 'cursor-dot';
-        dot.style.cssText = `
-            position: fixed;
-            width: 4px;
-            height: 4px;
-            background: linear-gradient(45deg, #E91E63, #d29f51);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            opacity: ${1 - i / trailLength};
-            transition: opacity 0.2s ease;
-        `;
-        document.body.appendChild(dot);
-        trail.push(dot);
-    }
-    
-    let mouseX = 0, mouseY = 0;
-    
-    document.addEventListener('mousemove', function(e) {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    });
-    
-    function updateTrail() {
-        for (let i = trail.length - 1; i > 0; i--) {
-            trail[i].style.left = trail[i - 1].style.left;
-            trail[i].style.top = trail[i - 1].style.top;
-        }
-        
-        trail[0].style.left = mouseX + 'px';
-        trail[0].style.top = mouseY + 'px';
-        
-        requestAnimationFrame(updateTrail);
-    }
-    
-    updateTrail();
+    // Disabled - was causing cursor lag
 }
 
-// Initialize cursor trail on desktop
+// Cursor trail initialization disabled
 if (window.innerWidth > 768) {
-    initCursorTrail();
+    // initCursorTrail() - disabled to fix cursor issues
 }
 
 // Performance optimization: Debounce scroll events
@@ -622,50 +581,10 @@ const optimizedScrollHandler = debounce(function() {
 
 window.addEventListener('scroll', optimizedScrollHandler);
 
-// Loading screen
+// Loading screen disabled to prevent buttons reappearing
 window.addEventListener('load', function() {
-    const loadingScreen = document.createElement('div');
-    loadingScreen.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #FAF9F6;
-        z-index: 99999;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        transition: opacity 0.5s ease;
-    `;
-    
-    loadingScreen.innerHTML = `
-        <div style="font-family: 'Playfair Display', serif; font-size: 2.5rem; color: #E91E63; margin-bottom: 1rem;">Bread N' Br☕︎w</div>
-        <div style="font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #d29f51; letter-spacing: 0.2em;">COFFEE • BREAD • PATISSERIES</div>
-        <div style="margin-top: 2rem; width: 50px; height: 4px; background: linear-gradient(45deg, #E91E63, #d29f51); animation: loading 1.5s ease-in-out infinite;"></div>
-    `;
-    
-    // Add loading animation
-    const loadingCSS = `
-        @keyframes loading {
-            0%, 100% { transform: scaleX(1); }
-            50% { transform: scaleX(0.5); }
-        }
-    `;
-    
-    const loadingStyle = document.createElement('style');
-    loadingStyle.textContent = loadingCSS;
-    document.head.appendChild(loadingStyle);
-    
-    document.body.appendChild(loadingScreen);
-    
-    setTimeout(() => {
-        loadingScreen.style.opacity = '0';
-        setTimeout(() => {
-            loadingScreen.remove();
-        }, 500);
-    }, 1500);
+    // Loading screen removed to fix button reappearing issue
+    console.log('Page loaded - loading screen disabled');
 });
 
 // Add keyboard navigation support
@@ -691,12 +610,11 @@ document.addEventListener('keydown', function(e) {
 // Initialize page-specific functionality
 function initPageSpecific() {
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    
+
     switch (currentPage) {
         case 'index.html':
         case '':
-            // Home page specific functionality
-            initHomePageEffects();
+            // Home page specific functionality - animations removed
             break;
         case 'menu.html':
             // Menu page specific functionality
@@ -714,23 +632,7 @@ function initPageSpecific() {
 }
 
 function initHomePageEffects() {
-    // Add floating animation to hero elements
-    const heroElements = document.querySelectorAll('.hero-title, .hero-subtitle');
-    heroElements.forEach((element, index) => {
-        element.style.animation = `float ${3 + index}s ease-in-out infinite`;
-    });
-    
-    // Add float animation CSS
-    const floatCSS = `
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-    `;
-    
-    const floatStyle = document.createElement('style');
-    floatStyle.textContent = floatCSS;
-    document.head.appendChild(floatStyle);
+    // Removed floating animations that were causing issues
 }
 
 function initMenuPageEffects() {
