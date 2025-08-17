@@ -309,6 +309,18 @@ function initScrollAnimations() {
     });
 
     console.log(`✨ Scroll animations initialized for ${animatedElements.length} elements`);
+
+    // Fallback for browsers without Intersection Observer support
+    if (!window.IntersectionObserver) {
+        console.warn('Intersection Observer not supported, using fallback animations');
+        animatedElements.forEach((element, index) => {
+            setTimeout(() => {
+                element.classList.add('fade-in');
+                element.style.opacity = '';
+                element.style.transform = '';
+            }, index * 200 + 1000); // Staggered appearance after 1 second
+        });
+    }
 }
 
 // Form handling
