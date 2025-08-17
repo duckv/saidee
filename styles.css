@@ -2123,6 +2123,37 @@ a[href^="mailto:"]:hover {
     .hero-content {
         padding: 0 0.5rem;
     }
+
+    /* Construction page mobile */
+    .construction-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .construction-content > p {
+        font-size: 1rem;
+    }
+
+    .order-cta {
+        padding: 2rem 1rem;
+        margin: 2rem 0;
+    }
+
+    .order-cta h2 {
+        font-size: 1.8rem;
+    }
+
+    .construction-icon {
+        font-size: 3rem;
+    }
+
+    .quick-info {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .info-item {
+        padding: 1rem;
+    }
 }
 
 /* Responsive Images */
