@@ -12,9 +12,10 @@ html {
 body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
-    color: #1A1A1A;
+    color: #2A2A2A;
     background-color: #FAF9F6;
     overflow-x: hidden;
+    cursor: auto;
 }
 
 /* Typography */
@@ -22,7 +23,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', serif;
     font-weight: 600;
     line-height: 1.2;
-    color: #1A1A1A;
+    color: #2A2A2A;
 }
 
 h1 {
@@ -91,7 +92,7 @@ a {
     font-size: 2rem;
     color: #E91E63;
     margin-bottom: -0.2rem;
-    font-weight: 400;
+    font-weight: 700;
     font-family: 'Inter', sans-serif;
 }
 
@@ -319,6 +320,19 @@ a {
     animation: fadeInUp 1s ease-out 0.6s both;
 }
 
+.hero-directions {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+    border: 2px solid white !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+.hero-directions:hover {
+    background: white !important;
+    color: #E91E63 !important;
+    border-color: white !important;
+}
+
 /* Page Hero (for other pages) */
 .page-hero {
     position: relative;
@@ -463,7 +477,7 @@ a {
 
 .highlights-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     margin-top: 3rem;
 }
