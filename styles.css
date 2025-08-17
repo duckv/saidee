@@ -144,6 +144,15 @@ a {
     flex-direction: column;
     cursor: pointer;
     gap: 4px;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    z-index: 1001;
+    position: relative;
+    min-width: 44px;
+    min-height: 44px;
+    justify-content: center;
+    align-items: center;
 }
 
 .nav-toggle span {
@@ -151,6 +160,8 @@ a {
     height: 3px;
     background: #2A2A2A;
     transition: all 0.3s ease;
+    border-radius: 1px;
+    transform-origin: center;
 }
 
 /* Order Online Navigation Button */
@@ -1531,7 +1542,10 @@ a[href^="mailto:"]:hover {
         align-items: center;
         padding-top: 2rem;
         gap: 2rem;
-        transition: left 0.3s ease;
+        transition: left 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        z-index: 1000;
+        overflow-y: auto;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     }
 
     .nav-order {
@@ -1549,8 +1563,42 @@ a[href^="mailto:"]:hover {
         left: 0;
     }
 
+    .nav-menu li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-menu a {
+        display: block;
+        width: 100%;
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+        border-radius: 8px;
+        margin: 0 1rem;
+        transition: all 0.3s ease;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nav-menu a:hover {
+        background: rgba(233, 30, 99, 0.1);
+        transform: translateY(-2px);
+    }
+
     .nav-toggle {
         display: flex;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .nav-toggle:hover {
+        background: rgba(233, 30, 99, 0.1);
+    }
+
+    .nav-toggle:active {
+        background: rgba(233, 30, 99, 0.2);
+        transform: scale(0.95);
     }
 
     .nav-toggle.active span:nth-child(1) {
