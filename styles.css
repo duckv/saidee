@@ -64,6 +64,34 @@ a {
     padding: 0 2rem;
 }
 
+/* Touch device improvements */
+@media (max-width: 768px) {
+    /* Improve touch targets */
+    .nav-toggle {
+        min-height: 44px;
+        min-width: 44px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Prevent text selection on nav toggle */
+    .nav-toggle {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Improve button touch targets */
+    .btn {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
 /* Navigation */
 .navbar {
     position: fixed;
