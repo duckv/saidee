@@ -150,6 +150,41 @@ a {
     transition: all 0.3s ease;
 }
 
+/* Order Online Navigation Button */
+.nav-order {
+    margin-left: 1rem;
+}
+
+.nav-order .btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 25px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Directions Links */
+.directions-link,
+.directions-btn {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #E91E63;
+    color: white;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.directions-link:hover,
+.directions-btn:hover {
+    background: #C2185B;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+}
+
 /* Buttons */
 .btn {
     display: inline-block;
