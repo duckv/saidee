@@ -1462,9 +1462,10 @@ a {
         margin-top: 1rem;
     }
 
-    .nav-order .btn {
-        padding: 1rem 2rem;
-        font-size: 1rem;
+    .nav-order-btn {
+        padding: 1rem 2rem !important;
+        font-size: 1rem !important;
+        border-radius: 10px !important;
     }
 
     .nav-menu.active {
