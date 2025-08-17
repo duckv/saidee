@@ -16,6 +16,9 @@ body {
     background-color: #FAF9F6;
     overflow-x: hidden;
     cursor: auto;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Typography */
