@@ -90,6 +90,18 @@ a {
         align-items: center;
         justify-content: center;
     }
+
+    /* Ensure nav links are easily tappable */
+    .nav-menu a {
+        position: relative;
+        z-index: 1000;
+        -webkit-tap-highlight-color: rgba(233, 30, 99, 0.2);
+    }
+
+    /* Fix any transform issues on mobile */
+    .nav-menu li a::after {
+        will-change: width;
+    }
 }
 
 /* Navigation */
