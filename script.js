@@ -103,6 +103,7 @@ function initNavigation() {
         function closeMobileMenu() {
             navToggle.classList.remove('active');
             navMenu.classList.remove('active');
+            document.body.classList.remove('menu-open');
             document.body.style.overflow = '';
             navToggle.setAttribute('aria-expanded', 'false');
             navMenu.setAttribute('aria-hidden', 'true');
