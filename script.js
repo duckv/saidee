@@ -397,26 +397,33 @@ function showNewsletterModal() {
 
 // Order Online functionality
 function initOrderOnline() {
-    const orderButtons = document.querySelectorAll('a[href="#"]:contains("Order Online"), #order-online-main, .nav-order a');
-
-    // Handle all order online buttons
+    // Handle all order online buttons using event delegation
     document.addEventListener('click', function(e) {
         const target = e.target;
-        if (target.textContent.includes('Order Online') || target.id === 'order-online-main') {
+
+        // Check if clicked element is an order online button
+        if ((target.textContent.includes('Order Online') && target.tagName === 'A') ||
+            target.id === 'order-online-main' ||
+            target.classList.contains('btn') && target.textContent.includes('Order Online')) {
+
             e.preventDefault();
 
             const originalText = target.textContent;
             target.textContent = 'Connecting...';
+            target.style.pointerEvents = 'none';
 
             setTimeout(() => {
                 showNotification('Redirecting to our online ordering system! In a real implementation, this would connect to your ordering platform.', 'success');
                 target.textContent = originalText;
+                target.style.pointerEvents = 'auto';
 
                 // In real implementation, redirect to ordering system:
                 // window.open('https://your-ordering-system.com', '_blank');
             }, 1500);
         }
     });
+
+    console.log('Order Online functionality initialized');
 }
 
 // Notification system
