@@ -433,7 +433,18 @@ function initOrderOnline() {
         }
     });
 
-    console.log('Order Online functionality initialized');
+    // Find and log all Order Online buttons for debugging
+    const allLinks = document.querySelectorAll('a');
+    let orderButtonCount = 0;
+
+    allLinks.forEach(link => {
+        if (link.textContent.includes('Order Online')) {
+            orderButtonCount++;
+            link.classList.add('order-online-btn'); // Add class for easier identification
+        }
+    });
+
+    console.log(`Order Online functionality initialized - Found ${orderButtonCount} order buttons`);
 }
 
 // Notification system
