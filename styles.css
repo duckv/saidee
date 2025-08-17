@@ -2352,80 +2352,32 @@ img {
     animation: fadeIn 1s ease-out 0.5s both;
 }
 
-.loading-animation {
-    margin: 2rem 0;
-    height: 100px;
+.loading-simple {
+    margin: 3rem 0 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.coffee-cup {
-    position: relative;
-    animation: bounce 2s ease-in-out infinite;
+.loading-dots {
+    display: flex;
+    gap: 8px;
 }
 
-.cup {
-    width: 60px;
-    height: 80px;
-    background: linear-gradient(135deg, #8B4513, #A0522D);
-    border-radius: 0 0 30px 30px;
-    position: relative;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+.loading-dots span {
+    width: 8px;
+    height: 8px;
+    background: #d29f51;
+    border-radius: 50%;
+    animation: loadingDots 1.4s ease-in-out infinite both;
 }
 
-.cup::before {
-    content: '';
-    position: absolute;
-    top: 20px;
-    right: -15px;
-    width: 20px;
-    height: 25px;
-    border: 4px solid #8B4513;
-    border-left: none;
-    border-radius: 0 50% 50% 0;
+.loading-dots span:nth-child(1) {
+    animation-delay: -0.32s;
 }
 
-.cup::after {
-    content: '';
-    position: absolute;
-    top: 10px;
-    left: 5px;
-    right: 5px;
-    height: 60px;
-    background: linear-gradient(135deg, #D2B48C, #F5DEB3);
-    border-radius: 0 0 25px 25px;
-}
-
-.steam {
-    position: absolute;
-    width: 4px;
-    height: 30px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.8), transparent);
-    border-radius: 2px;
-    animation: steam 1.5s ease-in-out infinite;
-}
-
-.steam:nth-child(2) {
-    left: 20px;
-    animation-delay: 0.2s;
-}
-
-.steam:nth-child(3) {
-    left: 30px;
-    animation-delay: 0.4s;
-}
-
-.steam:nth-child(4) {
-    left: 40px;
-    animation-delay: 0.6s;
-}
-
-.loading-text p {
-    color: #666;
-    font-size: 1.1rem;
-    font-style: italic;
-    animation: pulse 2s ease-in-out infinite;
+.loading-dots span:nth-child(2) {
+    animation-delay: -0.16s;
 }
 
 /* Loading Screen Animations */
