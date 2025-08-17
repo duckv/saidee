@@ -49,8 +49,24 @@ function initEmailJS() {
     if (typeof emailjs !== 'undefined') {
         emailjs.init('21LVan48_eVuxeqqS');
         console.log('EmailJS initialized successfully');
+        console.log('Service ID: service_aw0glyl');
+        console.log('Contact Template: template_wvgv8q5');
+        console.log('Catering Template: template_jt6z1vk');
     } else {
         console.warn('EmailJS not loaded - forms will show simulation messages');
+    }
+}
+
+// Test function for EmailJS (for debugging)
+function testEmailJS() {
+    if (typeof emailjs !== 'undefined') {
+        console.log('EmailJS is loaded and ready');
+        console.log('Public Key: 21LVan48_eVuxeqqS');
+        console.log('Service ID: service_aw0glyl');
+        return true;
+    } else {
+        console.error('EmailJS is not loaded');
+        return false;
     }
 }
 
