@@ -1630,3 +1630,42 @@ button:focus,
     outline: 2px solid #E91E63;
     outline-offset: 4px;
 }
+
+/* Fallback visibility rules to prevent blank content */
+.highlight-card,
+.package-card,
+.gallery-item,
+.value-item,
+.service-item,
+.order-item,
+.menu-category,
+.about-text,
+.catering-text,
+.story-content {
+    min-opacity: 1;
+}
+
+/* Ensure content shows up after 2 seconds if animations fail */
+body {
+    animation: ensureVisibility 2s ease-out 2s forwards;
+}
+
+@keyframes ensureVisibility {
+    to {
+        --force-visible: 1;
+    }
+}
+
+body[style*="--force-visible"] .highlight-card,
+body[style*="--force-visible"] .package-card,
+body[style*="--force-visible"] .gallery-item,
+body[style*="--force-visible"] .value-item,
+body[style*="--force-visible"] .service-item,
+body[style*="--force-visible"] .order-item,
+body[style*="--force-visible"] .menu-category,
+body[style*="--force-visible"] .about-text,
+body[style*="--force-visible"] .catering-text,
+body[style*="--force-visible"] .story-content {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+}
