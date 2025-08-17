@@ -1,5 +1,8 @@
 // Bread N' Br☕︎w Patisserie - Interactive JavaScript
 
+// Add loading class immediately
+document.body.classList.add('loading');
+
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     try {
