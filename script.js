@@ -904,4 +904,77 @@ function forceContentVisible() {
     }
 }
 
+// Enhanced mobile form interactions
+function enhanceMobileForms() {
+    // Improve select dropdown interactions on mobile
+    const selectElements = document.querySelectorAll('select');
+    selectElements.forEach(select => {
+        // Add touch-friendly focus handling
+        select.addEventListener('focus', function() {
+            this.style.borderColor = '#E91E63';
+            this.style.boxShadow = '0 0 10px rgba(233, 30, 99, 0.3)';
+        });
+
+        select.addEventListener('blur', function() {
+            this.style.borderColor = 'rgba(210, 159, 81, 0.3)';
+            this.style.boxShadow = 'none';
+        });
+
+        // Improve touch feedback
+        select.addEventListener('touchstart', function() {
+            this.style.backgroundColor = 'rgba(233, 30, 99, 0.05)';
+        });
+
+        select.addEventListener('touchend', function() {
+            setTimeout(() => {
+                this.style.backgroundColor = 'white';
+            }, 200);
+        });
+    });
+
+    // Enhance input field interactions
+    const inputElements = document.querySelectorAll('input, textarea');
+    inputElements.forEach(input => {
+        // Prevent viewport jumping on iOS
+        if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+            input.addEventListener('focus', function() {
+                setTimeout(() => {
+                    if (document.activeElement === this) {
+                        this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }, 300);
+            });
+        }
+
+        // Add visual feedback for touch
+        input.addEventListener('touchstart', function() {
+            this.style.borderColor = '#E91E63';
+        });
+    });
+
+    // Improve form submission feedback
+    const forms = document.querySelectorAll('form');
+    forms.forEach(form => {
+        const submitButton = form.querySelector('button[type="submit"]');
+        if (submitButton) {
+            // Add touch feedback to submit button
+            submitButton.addEventListener('touchstart', function() {
+                if (!this.disabled) {
+                    this.style.transform = 'scale(0.98)';
+                    this.style.boxShadow = '0 2px 8px rgba(233, 30, 99, 0.3)';
+                }
+            });
+
+            submitButton.addEventListener('touchend', function() {
+                if (!this.disabled) {
+                    setTimeout(() => {
+                        this.style.transform = '';
+                        this.style.boxShadow = '';
+                    }, 150);
+                }
+            });
+        }
+    });
+}
+
 console.log('☕ Bread N\' Br☕︎w - Interactive features loaded successfully!');
