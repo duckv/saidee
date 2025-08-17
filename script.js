@@ -151,11 +151,16 @@ function initNavigation() {
             }
         });
 
-        // Handle window resize
-        window.addEventListener('resize', function() {
+        // Handle window resize and orientation change
+        function handleScreenChange() {
             if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
                 closeMobileMenu();
             }
+        }
+
+        window.addEventListener('resize', handleScreenChange);
+        window.addEventListener('orientationchange', function() {
+            setTimeout(handleScreenChange, 500); // Delay to allow for orientation change
         });
 
         // Initialize ARIA attributes
