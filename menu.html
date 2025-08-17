@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Lumière Patisserie</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h1>Lumière</h1>
+                <span>PATISSERIE</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="menu.html" class="nav-active">Menu</a></li>
+                <li><a href="catering.html">Catering</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Menu</h1>
+            <p>Discover our selection of artisan pastries, breads, and beverages</p>
+            <a href="#" class="btn btn-secondary" id="download-menu">Download PDF Menu</a>
+        </div>
+    </section>
+
+    <!-- Menu Categories -->
+    <section class="menu">
+        <div class="container">
+            <!-- Pastries -->
+            <div class="menu-category">
+                <div class="category-header">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1089&q=80" alt="French pastries">
+                    <h2>French Pastries</h2>
+                </div>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3>Classic Croissant</h3>
+                            <p>Buttery, flaky perfection with 64 delicate layers</p>
+                        </div>
+                        <span class="price">$3.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3>Pain au Chocolat</h3>
+                            <p>Traditional croissant filled with premium Belgian chocolate</p>
+                        </div>
+                        <span class="price">$4.25</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3>Almond Croissant</h3>
+                            <p>Filled with almond cream and topped with sliced almonds</p>
+                        </div>
+                        <span class="price">$4.75</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3>Fruit Tart</h3>
+                            <p>Seasonal fresh fruits on vanilla pastry cream</p>
+                        </div>
+                        <span class="price">$5.95</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3>Éclair</h3>
+                            <p>Choux pastry filled with cream, choice of chocolate or vanilla</p>
+                        </div>
+                        <span class="price">$4.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3>Macarons</h3>
+                            <p>Delicate almond cookies, variety of flavors (box of 6)</p>
+                        </div>
+                        <span class="price">$18.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Artisan Bread -->
+            <div class="menu-category">
+                <div class="category-header">
+                    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1072&q=80" alt="Artisan bread">
+                    <h2>Artisan Bread</h2>
+                </div>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3>Sourdough Boule</h3>
+                            <p>Traditional French sourdough, 48-hour fermentation</p>
+                        </div>
+                        <span class="price">$6.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3>Baguette Tradition</h3>
+                            <p>Classic French baguette with crispy crust</p>
+                        </div>
+                        <span class="price">$3.25</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3>Multigrain Loaf</h3>
+                            <p>Hearty blend of ancient grains and seeds</p>
+                        </div>
+                        <span class="price">$7.00</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3>Brioche</h3>
+                            <p>Rich, buttery bread perfect for breakfast</p>
+                        </div>
+                        <span class="price">$5.75</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Specialty Coffee -->
+            <div class="menu-category">
+                <div class="category-header">
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Specialty coffee">
+                    <h2>Specialty Coffee</h2>
+                </div>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3>Espresso</h3>
+                            <p>Single or double shot of our signature blend</p>
+                        </div>
+                        <span class="price">$2.75 / $3.25</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3>Café au Lait</h3>
+                            <p>Equal parts coffee and steamed milk</p>
+                        </div>
+                        <span class="price">$4.25</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3>Cappuccino</h3>
+                            <p>Espresso with steamed milk and foam art</p>
+                        </div>
+                        <span class="price">$4.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3>Cold Brew</h3>
+                            <p>Smooth, slow-steeped coffee served over ice</p>
+                        </div>
+                        <span class="price">$3.95</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3>French Press</h3>
+                            <p>Single-origin coffee, full-bodied and rich</p>
+                        </div>
+                        <span class="price">$5.50</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Savory -->
+            <div class="menu-category">
+                <div class="category-header">
+                    <img src="https://images.unsplash.com/photo-1525059696034-4967a729002e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Savory items">
+                    <h2>Savory Selections</h2>
+                </div>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3>Avocado Toast</h3>
+                            <p>Fresh avocado on sourdough with cherry tomatoes</p>
+                        </div>
+                        <span class="price">$8.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3>Croque Monsieur</h3>
+                            <p>Classic French grilled ham and cheese sandwich</p>
+                        </div>
+                        <span class="price">$9.75</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3>Quiche Lorraine</h3>
+                            <p>Traditional bacon and gruyere custard tart</p>
+                        </div>
+                        <span class="price">$7.25</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3>Soup du Jour</h3>
+                            <p>Daily selection of seasonal soups</p>
+                        </div>
+                        <span class="price">$6.50</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ice Cream -->
+            <div class="menu-category">
+                <div class="category-header">
+                    <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1128&q=80" alt="Artisan ice cream">
+                    <h2>Artisan Ice Cream</h2>
+                </div>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3>Vanilla Bean Gelato</h3>
+                            <p>Made with Madagascar vanilla beans</p>
+                        </div>
+                        <span class="price">$4.50</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3>Dark Chocolate Sorbet</h3>
+                            <p>Intense Belgian chocolate, dairy-free</p>
+                        </div>
+                        <span class="price">$4.75</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3>Seasonal Fruit Sorbet</h3>
+                            <p>Fresh, rotating selection of fruit flavors</p>
+                        </div>
+                        <span class="price">$4.25</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3>Affogato</h3>
+                            <p>Vanilla gelato "drowned" in hot espresso</p>
+                        </div>
+                        <span class="price">$6.50</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seasonal Specials -->
+    <section class="seasonal-specials">
+        <div class="container">
+            <div class="specials-content">
+                <h2>Seasonal Specials</h2>
+                <p>Limited-time offerings featuring the finest seasonal ingredients</p>
+                <div class="specials-grid">
+                    <div class="special-item">
+                        <h3>Autumn Tart</h3>
+                        <p>Spiced pear and almond cream tart with caramelized walnuts</p>
+                        <span class="special-price">$6.95</span>
+                    </div>
+                    <div class="special-item">
+                        <h3>Pumpkin Spice Latte</h3>
+                        <p>House-made pumpkin spice blend with local maple syrup</p>
+                        <span class="special-price">$5.25</span>
+                    </div>
+                    <div class="special-item">
+                        <h3>Apple Cider Donut</h3>
+                        <p>Cake donut infused with fresh apple cider and cinnamon sugar</p>
+                        <span class="special-price">$3.75</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Lumière Patisserie</h3>
+                    <p>Where every bite tells a story of French culinary excellence.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="catering.html">Catering</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Visit Us</h4>
+                    <p>123 Rue de la Paix<br>
+                    Paris Quarter, City 75001<br>
+                    (555) 123-4567</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Hours</h4>
+                    <p>Mon-Fri: 7:00 AM - 8:00 PM<br>
+                    Sat-Sun: 8:00 AM - 9:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Lumière Patisserie. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

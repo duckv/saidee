@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Lumière Patisserie</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h1>Lumière</h1>
+                <span>PATISSERIE</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="catering.html">Catering</a></li>
+                <li><a href="contact.html" class="nav-active">Contact</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Header -->
+    <section class="contact-header">
+        <div class="header-background">
+            <img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Lumière Patisserie storefront">
+        </div>
+        <div class="container">
+            <div class="header-content">
+                <h1>Visit Us</h1>
+                <p>We'd love to welcome you to our patisserie</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Content -->
+    <section class="contact-content">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Contact Form -->
+                <div class="contact-form-section">
+                    <h2>Get in Touch</h2>
+                    <p>Have questions about our menu, catering services, or special orders? Send us a message and we'll get back to you soon.</p>
+                    
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="contactName">Name *</label>
+                            <input type="text" id="contactName" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactEmail">Email *</label>
+                            <input type="email" id="contactEmail" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactPhone">Phone</label>
+                            <input type="tel" id="contactPhone" name="phone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <select id="subject" name="subject">
+                                <option value="">Select a topic</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="catering">Catering Services</option>
+                                <option value="special-orders">Special Orders</option>
+                                <option value="feedback">Feedback</option>
+                                <option value="employment">Employment</option>
+                                <option value="media">Media Inquiry</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" rows="6" placeholder="Tell us how we can help you..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+
+                <!-- Contact Info Sidebar -->
+                <div class="contact-info">
+                    <div class="info-section">
+                        <h3>Location</h3>
+                        <div class="info-item">
+                            <h4>Address</h4>
+                            <p>123 Rue de la Paix<br>
+                            Paris Quarter, City 75001</p>
+                        </div>
+                        
+                        <div class="info-item">
+                            <h4>Phone</h4>
+                            <p><a href="tel:+15551234567">(555) 123-4567</a></p>
+                        </div>
+                        
+                        <div class="info-item">
+                            <h4>Email</h4>
+                            <p><a href="mailto:hello@lumierepatisserie.com">hello@lumierepatisserie.com</a></p>
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <h3>Hours</h3>
+                        <div class="hours-list">
+                            <div class="hours-item">
+                                <span class="day">Monday - Friday</span>
+                                <span class="time">7:00 AM - 8:00 PM</span>
+                            </div>
+                            <div class="hours-item">
+                                <span class="day">Saturday</span>
+                                <span class="time">8:00 AM - 9:00 PM</span>
+                            </div>
+                            <div class="hours-item">
+                                <span class="day">Sunday</span>
+                                <span class="time">8:00 AM - 9:00 PM</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <h3>Parking</h3>
+                        <p>Street parking available on Rue de la Paix and surrounding streets. Public parking garage located two blocks away on Boulevard Saint-Germain.</p>
+                    </div>
+
+                    <div class="info-section">
+                        <h3>Public Transit</h3>
+                        <p>Metro: Line 1, Station Palais-Royal<br>
+                        Bus: Lines 21, 27, 39, 95<br>
+                        Just a 3-minute walk from the station.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <h2>Find Us</h2>
+        </div>
+        <div class="map-container">
+            <div class="map-placeholder">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.991441833861!2d2.337631!3d48.861116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e1f06e2b70f%3A0x40b82c3688c9460!2sPalais%20Royal%20-%20Mus%C3%A9e%20du%20Louvre%2C%2075001%20Paris%2C%20France!5e0!3m2!1sen!2sus!4v1644845376789!5m2!1sen!2sus" 
+                    width="100%" 
+                    height="400" 
+                    style="border:0; filter: sepia(20%) saturate(80%) hue-rotate(15deg) brightness(95%);" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Orders -->
+    <section class="special-orders">
+        <div class="container">
+            <div class="orders-content">
+                <h2>Special Orders</h2>
+                <p>Planning something special? We create custom cakes, dessert platters, and specialty items for your unique occasions.</p>
+                
+                <div class="orders-grid">
+                    <div class="order-item">
+                        <h3>Custom Cakes</h3>
+                        <p>Birthday cakes, wedding cakes, and celebration desserts made to your specifications.</p>
+                        <span class="order-notice">48-hour advance notice required</span>
+                    </div>
+                    
+                    <div class="order-item">
+                        <h3>Corporate Orders</h3>
+                        <p>Regular delivery services for offices, weekly pastry subscriptions, and bulk orders.</p>
+                        <span class="order-notice">24-hour advance notice required</span>
+                    </div>
+                    
+                    <div class="order-item">
+                        <h3>Seasonal Specialties</h3>
+                        <p>Holiday-themed pastries, seasonal tarts, and limited-time offerings for special occasions.</p>
+                        <span class="order-notice">Advance ordering recommended</span>
+                    </div>
+                </div>
+                
+                <div class="orders-cta">
+                    <p>For special orders, please call us at <a href="tel:+15551234567">(555) 123-4567</a> or use the contact form above.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Lumière Patisserie</h3>
+                    <p>Where every bite tells a story of French culinary excellence.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="catering.html">Catering</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Visit Us</h4>
+                    <p>123 Rue de la Paix<br>
+                    Paris Quarter, City 75001<br>
+                    (555) 123-4567</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Hours</h4>
+                    <p>Mon-Fri: 7:00 AM - 8:00 PM<br>
+                    Sat-Sun: 8:00 AM - 9:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Lumière Patisserie. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
