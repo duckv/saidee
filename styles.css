@@ -74,6 +74,7 @@ a {
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(210, 159, 81, 0.2);
     transition: all 0.3s ease;
+    transform: translateY(0) !important;
 }
 
 .nav-container {
