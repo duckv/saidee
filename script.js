@@ -735,35 +735,41 @@ initPageSpecific();
 
 // Force all content to be visible immediately
 function forceContentVisible() {
-    const hiddenElements = document.querySelectorAll(`
-        .highlight-card,
-        .package-card,
-        .gallery-item,
-        .value-item,
-        .service-item,
-        .order-item,
-        .menu-category,
-        .about-text,
-        .catering-text,
-        .story-content,
-        .menu-items,
-        .menu-item
-    `);
+    try {
+        const hiddenElements = document.querySelectorAll(`
+            .highlight-card,
+            .package-card,
+            .gallery-item,
+            .value-item,
+            .service-item,
+            .order-item,
+            .menu-category,
+            .about-text,
+            .catering-text,
+            .story-content,
+            .menu-items,
+            .menu-item
+        `);
 
-    hiddenElements.forEach(element => {
-        element.style.opacity = '1';
-        element.style.transform = 'translateY(0) scale(1)';
-        element.style.visibility = 'visible';
-    });
+        hiddenElements.forEach(element => {
+            if (element) {
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0) scale(1)';
+                element.style.visibility = 'visible';
+            }
+        });
 
-    // Fix navbar
-    const navbar = document.querySelector('.navbar');
-    if (navbar) {
-        navbar.style.transform = 'translateY(0)';
-        navbar.style.visibility = 'visible';
+        // Fix navbar
+        const navbar = document.querySelector('.navbar');
+        if (navbar) {
+            navbar.style.transform = 'translateY(0)';
+            navbar.style.visibility = 'visible';
+        }
+
+        console.log('Content visibility forced - all elements should now be visible');
+    } catch (error) {
+        console.warn('Error in forceContentVisible:', error);
     }
-
-    console.log('Content visibility forced - all elements should now be visible');
 }
 
 console.log('☕ Bread N\' Br☕︎w - Interactive features loaded successfully!');
