@@ -112,7 +112,7 @@ a {
 
 .nav-menu a {
     font-weight: 500;
-    color: #1A1A1A;
+    color: #2A2A2A;
     position: relative;
     padding: 0.5rem 0;
     transition: color 0.3s ease;
@@ -149,7 +149,7 @@ a {
 .nav-toggle span {
     width: 25px;
     height: 3px;
-    background: #1A1A1A;
+    background: #2A2A2A;
     transition: all 0.3s ease;
 }
 
@@ -183,12 +183,15 @@ a {
 .directions-btn {
     display: inline-block;
     margin-top: 0.5rem;
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1.5rem;
     background: #E91E63;
-    color: white;
-    border-radius: 5px;
-    font-size: 0.9rem;
-    font-weight: 500;
+    color: white !important;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
     transition: all 0.3s ease;
 }
 
@@ -196,7 +199,32 @@ a {
 .directions-btn:hover {
     background: #C2185B;
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+    box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
+    color: white !important;
+}
+
+/* Address Links */
+.address-link {
+    color: #E91E63 !important;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.address-link:hover {
+    color: #d29f51 !important;
+}
+
+/* Phone and Email Links */
+a[href^="tel:"],
+a[href^="mailto:"] {
+    color: #E91E63;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a[href^="tel:"]:hover,
+a[href^="mailto:"]:hover {
+    color: #d29f51;
 }
 
 /* Buttons */
@@ -1164,7 +1192,7 @@ a {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 500;
-    color: #1A1A1A;
+    color: #2A2A2A;
 }
 
 .form-group input,
@@ -1270,7 +1298,7 @@ a {
 
 .day {
     font-weight: 500;
-    color: #1A1A1A;
+    color: #2A2A2A;
 }
 
 .time {
