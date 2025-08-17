@@ -208,11 +208,22 @@ function initForms() {
     if (newsletterForm) {
         newsletterForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            const email = this.querySelector('input[type="email"]').value;
-            
+            const emailInput = this.querySelector('input[type="email"]');
+            const email = emailInput.value;
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+
             if (email) {
-                showNotification('Thank you for subscribing! We\'ll keep you updated on our latest offerings.', 'success');
-                this.reset();
+                submitBtn.textContent = 'Subscribing...';
+                submitBtn.disabled = true;
+
+                // For newsletter, we'll just show success message since no specific template
+                setTimeout(() => {
+                    showNotification('Thank you for subscribing! We\'ll keep you updated on our latest offerings.', 'success');
+                    this.reset();
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }, 1000);
             }
         });
     }
