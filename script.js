@@ -116,16 +116,25 @@ function initNavigation() {
             toggleMobileMenu();
         });
 
-        // Handle touch events for better mobile support
+        // Handle touch events for better mobile support (especially iOS Safari)
+        let touchStarted = false;
+
         navToggle.addEventListener('touchstart', function(e) {
-            e.preventDefault();
+            touchStarted = true;
             e.stopPropagation();
         });
 
         navToggle.addEventListener('touchend', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            toggleMobileMenu();
+            if (touchStarted) {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleMobileMenu();
+                touchStarted = false;
+            }
+        });
+
+        navToggle.addEventListener('touchcancel', function(e) {
+            touchStarted = false;
         });
 
         // Close mobile menu when clicking on a link
