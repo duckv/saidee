@@ -1527,6 +1527,62 @@ a[href^="mailto:"]:hover {
     animation: fadeInUp 0.8s ease-out;
 }
 
+/* Mobile Touch Improvements */
+@media (max-width: 768px) {
+    /* Improve touch targets */
+    .nav-toggle {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    /* Prevent zoom on input focus */
+    input, select, textarea {
+        font-size: 16px !important;
+    }
+
+    /* Smooth scrolling for mobile */
+    html {
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Prevent horizontal scroll */
+    body {
+        overflow-x: hidden;
+    }
+
+    /* Better button interactions */
+    .btn {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+        touch-action: manipulation;
+    }
+
+    .btn:active {
+        transform: scale(0.98) translateY(1px);
+    }
+
+    /* Card interactions */
+    .highlight-card,
+    .package-card,
+    .gallery-item {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+    }
+
+    /* Navbar improvements for mobile */
+    .navbar {
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+    }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .nav-menu {
