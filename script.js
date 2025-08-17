@@ -75,31 +75,123 @@ function initNavigation() {
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
     const navbar = document.querySelector('.navbar');
-    
+    const navContainer = document.querySelector('.nav-container');
+
     // Mobile menu toggle
     if (navToggle && navMenu) {
-        navToggle.addEventListener('click', function() {
-            navToggle.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        // Improved click/touch handler
+        navToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleMobileMenu();
         });
-        
+
+        // Add touch support for better mobile interaction
+        navToggle.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+        }, { passive: false });
+
+        navToggle.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleMobileMenu();
+        }, { passive: false });
+
+        function toggleMobileMenu() {
+            const isActive = navToggle.classList.contains('active');
+
+            if (isActive) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        }
+
+        function openMobileMenu() {
+            navToggle.classList.add('active');
+            navMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            // Add a backdrop for easier closing
+            if (!document.querySelector('.nav-backdrop')) {
+                const backdrop = document.createElement('div');
+                backdrop.className = 'nav-backdrop';
+                backdrop.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.3);
+                    z-index: 999;
+                    opacity: 0;
+                    transition: opacity 0.3s ease;
+                `;
+                document.body.appendChild(backdrop);
+
+                // Fade in backdrop
+                setTimeout(() => {
+                    backdrop.style.opacity = '1';
+                }, 10);
+
+                // Close menu when clicking backdrop
+                backdrop.addEventListener('click', closeMobileMenu);
+                backdrop.addEventListener('touchstart', closeMobileMenu);
+            }
+        }
+
+        function closeMobileMenu() {
+            navToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+            document.body.style.overflow = '';
+
+            // Remove backdrop
+            const backdrop = document.querySelector('.nav-backdrop');
+            if (backdrop) {
+                backdrop.style.opacity = '0';
+                setTimeout(() => {
+                    backdrop.remove();
+                }, 300);
+            }
+        }
+
         // Close mobile menu when clicking on a link
         const navLinks = document.querySelectorAll('.nav-menu a');
         navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                navToggle.classList.remove('active');
-                navMenu.classList.remove('active');
-                document.body.style.overflow = '';
+            link.addEventListener('click', function(e) {
+                // Only close if it's an internal link or external link
+                closeMobileMenu();
+            });
+
+            // Add touch feedback for mobile links
+            link.addEventListener('touchstart', function() {
+                this.style.background = 'rgba(233, 30, 99, 0.1)';
+            });
+
+            link.addEventListener('touchend', function() {
+                setTimeout(() => {
+                    this.style.background = '';
+                }, 200);
             });
         });
-        
-        // Close mobile menu when clicking outside
+
+        // Close mobile menu when clicking outside (but not on mobile backdrop)
         document.addEventListener('click', function(e) {
-            if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
-                navToggle.classList.remove('active');
-                navMenu.classList.remove('active');
-                document.body.style.overflow = '';
+            if (!navContainer.contains(e.target) &&
+                !e.target.classList.contains('nav-backdrop')) {
+                closeMobileMenu();
+            }
+        });
+
+        // Prevent menu from staying open on orientation change
+        window.addEventListener('orientationchange', function() {
+            setTimeout(closeMobileMenu, 100);
+        });
+
+        // Close menu on resize if desktop size
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                closeMobileMenu();
             }
         });
     }
@@ -360,7 +452,7 @@ function initImageEffects() {
         img.addEventListener('error', function() {
             this.style.opacity = '1';
             this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkFGOUY2Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2QyOWY1MSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkx1bWnDqHJlIFBhdGlzc2VyaWU8L3RleHQ+PC9zdmc+';
-            this.alt = 'Bread N' Br☕︎w';
+            this.alt = 'Bread N\' Br☕︎w';
         });
     });
     
@@ -660,13 +752,37 @@ document.addEventListener('keydown', function(e) {
             modal.remove();
             document.body.style.overflow = '';
         }
-        
+
         const navMenu = document.querySelector('.nav-menu.active');
         const navToggle = document.querySelector('.nav-toggle.active');
         if (navMenu && navToggle) {
             navMenu.classList.remove('active');
             navToggle.classList.remove('active');
             document.body.style.overflow = '';
+
+            // Remove backdrop
+            const backdrop = document.querySelector('.nav-backdrop');
+            if (backdrop) {
+                backdrop.remove();
+            }
+        }
+    }
+
+    // Add keyboard navigation for mobile menu
+    if (e.key === 'Tab') {
+        const navMenu = document.querySelector('.nav-menu.active');
+        if (navMenu) {
+            const focusableElements = navMenu.querySelectorAll('a, button');
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+
+            if (e.shiftKey && document.activeElement === firstElement) {
+                e.preventDefault();
+                lastElement.focus();
+            } else if (!e.shiftKey && document.activeElement === lastElement) {
+                e.preventDefault();
+                firstElement.focus();
+            }
         }
     }
 });
