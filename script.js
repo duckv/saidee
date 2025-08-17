@@ -205,45 +205,79 @@ function initForms() {
         });
     }
     
-    // Contact form
+    // Contact form with EmailJS
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            // Simulate form submission
+
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalText = submitBtn.textContent;
-            
+
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
-            
+
+            // Collect form data
+            const formData = new FormData(this);
+            const templateParams = {
+                from_name: formData.get('name'),
+                from_email: formData.get('email'),
+                phone: formData.get('phone') || 'Not provided',
+                subject: formData.get('subject') || 'General Inquiry',
+                message: formData.get('message'),
+                to_email: 'breadnbrew512@gmail.com'
+            };
+
+            // Send email using EmailJS (you'll need to set up EmailJS service)
+            // For now, simulate the email sending
             setTimeout(() => {
-                showNotification('Thank you for your message! We\'ll get back to you within 24 hours.', 'success');
+                showNotification('Thank you for your message! We\'ll get back to you within 24 hours at breadnbrew512@gmail.com', 'success');
                 this.reset();
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
+
+                // Log the form data that would be sent
+                console.log('Contact form data:', templateParams);
             }, 1500);
         });
     }
     
-    // Catering form
+    // Catering form with EmailJS
     const cateringForm = document.getElementById('cateringForm');
     if (cateringForm) {
         cateringForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
+
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalText = submitBtn.textContent;
-            
+
             submitBtn.textContent = 'Submitting...';
             submitBtn.disabled = true;
-            
+
+            // Collect form data
+            const formData = new FormData(this);
+            const templateParams = {
+                from_name: formData.get('name'),
+                from_email: formData.get('email'),
+                phone: formData.get('phone') || 'Not provided',
+                event_date: formData.get('eventDate'),
+                event_type: formData.get('eventType') || 'Not specified',
+                guest_count: formData.get('guestCount'),
+                package_interest: formData.get('packageInterest') || 'Not specified',
+                details: formData.get('details'),
+                to_email: 'breadnbrew512@gmail.com'
+            };
+
+            // Send email using EmailJS (you'll need to set up EmailJS service)
+            // For now, simulate the email sending
             setTimeout(() => {
-                showNotification('Thank you for your catering inquiry! Our team will contact you within 24 hours to discuss your event.', 'success');
+                showNotification('Thank you for your catering inquiry! Our team will contact you within 24 hours at breadnbrew512@gmail.com to discuss your event.', 'success');
                 this.reset();
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
+
+                // Log the form data that would be sent
+                console.log('Catering form data:', templateParams);
             }, 2000);
         });
     }
@@ -407,44 +441,37 @@ function showNewsletterModal() {
 
 // Order Online functionality
 function initOrderOnline() {
-    // Handle all order online buttons using event delegation
+    // Handle order online buttons that don't already have the correct href
     document.addEventListener('click', function(e) {
         const target = e.target;
 
-        // Check if clicked element is an order online button
-        if ((target.textContent.includes('Order Online') && target.tagName === 'A') ||
-            target.id === 'order-online-main' ||
-            target.classList.contains('btn') && target.textContent.includes('Order Online')) {
+        // Check if clicked element is an order online button without proper href
+        if ((target.textContent.includes('Order Online') && target.tagName === 'A' &&
+             target.href && !target.href.includes('skytab.com')) ||
+            target.id === 'order-online-main') {
 
             e.preventDefault();
 
-            const originalText = target.textContent;
-            target.textContent = 'Connecting...';
-            target.style.pointerEvents = 'none';
-
-            setTimeout(() => {
-                showNotification('Redirecting to our online ordering system! In a real implementation, this would connect to your ordering platform.', 'success');
-                target.textContent = originalText;
-                target.style.pointerEvents = 'auto';
-
-                // In real implementation, redirect to ordering system:
-                // window.open('https://your-ordering-system.com', '_blank');
-            }, 1500);
+            // Redirect to the actual ordering system
+            window.open('https://online.skytab.com/s/breadnbrew', '_blank');
         }
     });
 
-    // Find and log all Order Online buttons for debugging
+    // Find and update any order buttons that don't have the correct URL
     const allLinks = document.querySelectorAll('a');
     let orderButtonCount = 0;
 
     allLinks.forEach(link => {
-        if (link.textContent.includes('Order Online')) {
+        if (link.textContent.includes('Order Online') &&
+            !link.href.includes('skytab.com')) {
             orderButtonCount++;
-            link.classList.add('order-online-btn'); // Add class for easier identification
+            link.href = 'https://online.skytab.com/s/breadnbrew';
+            link.target = '_blank';
+            link.classList.add('order-online-btn');
         }
     });
 
-    console.log(`Order Online functionality initialized - Found ${orderButtonCount} order buttons`);
+    console.log(`Order Online functionality initialized - Updated ${orderButtonCount} order buttons`);
 }
 
 // Notification system
