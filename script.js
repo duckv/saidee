@@ -27,8 +27,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Newsletter modal - DISABLED
     // initNewsletterModal();
     
-    // Menu PDF download
-    initMenuDownload();
+    // Order Online functionality
+    initOrderOnline();
 });
 
 // Navigation functionality
@@ -395,25 +395,28 @@ function showNewsletterModal() {
     return;
 }
 
-// Menu PDF download functionality
-function initMenuDownload() {
-    const downloadBtn = document.getElementById('download-menu');
-    if (downloadBtn) {
-        downloadBtn.addEventListener('click', function(e) {
+// Order Online functionality
+function initOrderOnline() {
+    const orderButtons = document.querySelectorAll('a[href="#"]:contains("Order Online"), #order-online-main, .nav-order a');
+
+    // Handle all order online buttons
+    document.addEventListener('click', function(e) {
+        const target = e.target;
+        if (target.textContent.includes('Order Online') || target.id === 'order-online-main') {
             e.preventDefault();
-            
-            // Simulate PDF generation and download
-            const originalText = this.textContent;
-            this.textContent = 'Preparing PDF...';
-            this.disabled = true;
-            
+
+            const originalText = target.textContent;
+            target.textContent = 'Connecting...';
+
             setTimeout(() => {
-                showNotification('Menu PDF would be downloaded in a real implementation. For demo purposes, this simulates the download.', 'info');
-                this.textContent = originalText;
-                this.disabled = false;
-            }, 2000);
-        });
-    }
+                showNotification('Redirecting to our online ordering system! In a real implementation, this would connect to your ordering platform.', 'success');
+                target.textContent = originalText;
+
+                // In real implementation, redirect to ordering system:
+                // window.open('https://your-ordering-system.com', '_blank');
+            }, 1500);
+        }
+    });
 }
 
 // Notification system
@@ -583,8 +586,8 @@ window.addEventListener('load', function() {
     `;
     
     loadingScreen.innerHTML = `
-        <div style="font-family: 'Playfair Display', serif; font-size: 3rem; color: #E91E63; margin-bottom: 1rem;">Lumière</div>
-        <div style="font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #d29f51; letter-spacing: 0.2em;">PATISSERIE</div>
+        <div style="font-family: 'Playfair Display', serif; font-size: 2.5rem; color: #E91E63; margin-bottom: 1rem;">Bread N' Br☕︎w</div>
+        <div style="font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #d29f51; letter-spacing: 0.2em;">COFFEE • BREAD • PATISSERIES</div>
         <div style="margin-top: 2rem; width: 50px; height: 4px; background: linear-gradient(45deg, #E91E63, #d29f51); animation: loading 1.5s ease-in-out infinite;"></div>
     `;
     
@@ -756,4 +759,4 @@ function forceContentVisible() {
     console.log('Content visibility forced - all elements should now be visible');
 }
 
-console.log('🥐 Lumière Patisserie - Interactive features loaded successfully!');
+console.log('☕ Bread N\' Br☕︎w - Interactive features loaded successfully!');
