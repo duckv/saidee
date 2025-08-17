@@ -8,8 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Initialize EmailJS
         initEmailJS();
 
-        // IMMEDIATE FIX: Force all content to be visible
-        forceContentVisible();
+        // Scroll animations will handle content visibility
 
         // Navigation functionality
         initNavigation();
@@ -39,8 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     } catch (error) {
         console.error('Error during initialization:', error);
-        // Fallback: ensure content is visible even if other features fail
-        setTimeout(forceContentVisible, 1000);
+        // Scroll animations will handle content visibility if other features fail
     }
 });
 
