@@ -78,9 +78,11 @@ function initNavigation() {
 
     // Mobile menu toggle
     if (navToggle && navMenu) {
-        // Toggle menu function
+        // Toggle menu function with debouncing
+        let isToggling = false;
         function toggleMobileMenu() {
-            const isActive = navMenu.classList.contains('active');
+            if (isToggling) return;
+            isToggling = true;
 
             navToggle.classList.toggle('active');
             navMenu.classList.toggle('active');
@@ -97,6 +99,11 @@ function initNavigation() {
             // Add ARIA attributes for accessibility
             navToggle.setAttribute('aria-expanded', navMenu.classList.contains('active'));
             navMenu.setAttribute('aria-hidden', !navMenu.classList.contains('active'));
+
+            // Reset debouncing after animation completes
+            setTimeout(() => {
+                isToggling = false;
+            }, 300);
         }
 
         // Close menu function
