@@ -390,80 +390,9 @@ function initNewsletterModal() {
 }
 
 function showNewsletterModal() {
-    const modal = document.createElement('div');
-    modal.className = 'newsletter-modal';
-    modal.innerHTML = `
-        <div class="modal-content">
-            <button class="modal-close">&times;</button>
-            <h3>Stay Connected</h3>
-            <p>Subscribe to receive updates on our seasonal offerings and exclusive events</p>
-            <form class="modal-newsletter-form">
-                <input type="email" placeholder="Your email address" required>
-                <button type="submit" class="btn btn-primary">Subscribe</button>
-            </form>
-        </div>
-        <div class="modal-overlay"></div>
-    `;
-    
-    // Add modal styles
-    modal.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 10000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        animation: fadeIn 0.3s ease-out;
-    `;
-    
-    const modalContent = modal.querySelector('.modal-content');
-    modalContent.style.cssText = `
-        background: white;
-        padding: 3rem;
-        border-radius: 20px;
-        text-align: center;
-        max-width: 500px;
-        width: 90%;
-        position: relative;
-        z-index: 2;
-        border: 2px solid #d29f51;
-        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
-        animation: slideInUp 0.4s ease-out;
-    `;
-    
-    const modalOverlay = modal.querySelector('.modal-overlay');
-    modalOverlay.style.cssText = `
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.7);
-        backdrop-filter: blur(5px);
-    `;
-    
-    document.body.appendChild(modal);
-    document.body.style.overflow = 'hidden';
-    
-    // Close modal functionality
-    const closeModal = () => {
-        modal.remove();
-        document.body.style.overflow = '';
-    };
-    
-    modal.querySelector('.modal-close').addEventListener('click', closeModal);
-    modalOverlay.addEventListener('click', closeModal);
-    
-    // Form submission
-    modal.querySelector('.modal-newsletter-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        localStorage.setItem('newsletterSubscribed', 'true');
-        showNotification('Thank you for subscribing!', 'success');
-        closeModal();
-    });
+    // Newsletter modal completely disabled - this function does nothing
+    console.log('Newsletter modal disabled by user request');
+    return;
 }
 
 // Menu PDF download functionality
