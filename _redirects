@@ -1,0 +1,13 @@
+# Redirect clean URLs to HTML files
+/home            /index.html         200
+/about           /about.html         200
+/menu            /menu.html          200
+/catering        /catering.html      200
+/contact         /contact.html       200
+
+# Redirect HTML URLs to clean URLs
+/index.html      /                   301!
+/about.html      /about              301!
+/menu.html       /menu               301!
+/catering.html   /catering           301!
+/contact.html    /contact            301!
