@@ -1966,6 +1966,119 @@ img:not([src]) {
     justify-content: center;
     padding: 100px 0;
     background: linear-gradient(135deg, #FAF9F6, #F5F4F1);
+
+/* Additional Device-Specific Fixes */
+
+/* Fix for very small screens (Galaxy Fold, etc.) */
+@media (max-width: 360px) {
+    .hero-title {
+        font-size: 1.8rem;
+        line-height: 1.1;
+    }
+
+    .nav-logo h1 {
+        font-size: 1.3rem;
+    }
+
+    .nav-logo span {
+        font-size: 0.6rem;
+    }
+
+    .btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .container {
+        padding: 0 0.75rem;
+    }
+}
+
+/* Large screens optimization */
+@media (min-width: 1440px) {
+    .container {
+        max-width: 1400px;
+        padding: 0 4rem;
+    }
+
+    .hero-title {
+        font-size: 4rem;
+    }
+
+    .highlights-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 3rem;
+    }
+}
+
+/* High DPI screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    img {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Landscape mobile fixes */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        min-height: 100vh;
+        padding: 2rem 0;
+    }
+
+    .hero-content {
+        padding: 1rem 0;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .hero-buttons {
+        gap: 0.5rem;
+    }
+
+    .btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* iOS Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+    .hero {
+        min-height: -webkit-fill-available;
+    }
+
+    .nav-menu {
+        height: -webkit-fill-available;
+    }
+}
+
+/* Print styles */
+@media print {
+    .navbar,
+    .nav-toggle,
+    .hero-buttons,
+    .newsletter {
+        display: none;
+    }
+
+    .hero-content {
+        color: #000;
+    }
+
+    * {
+        background: white !important;
+        color: black !important;
+    }
+}
 }
 
 .construction-content {
