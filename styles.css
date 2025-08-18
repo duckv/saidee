@@ -1966,6 +1966,7 @@ img:not([src]) {
     justify-content: center;
     padding: 100px 0;
     background: linear-gradient(135deg, #FAF9F6, #F5F4F1);
+}
 
 /* Additional Device-Specific Fixes */
 
@@ -2078,7 +2079,6 @@ img:not([src]) {
         background: white !important;
         color: black !important;
     }
-}
 }
 
 .construction-content {
